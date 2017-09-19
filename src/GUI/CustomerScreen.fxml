@@ -4,24 +4,22 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <SplitPane dividerPositions="0.3467048710601719" layoutX="-2.0" layoutY="1.0" prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.28939828080229224" layoutX="-2.0" layoutY="1.0" prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="237.0">
                <children>
-                  <TableView layoutX="3.0" prefHeight="498.0" prefWidth="205.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView layoutX="3.0" prefHeight="498.0" prefWidth="199.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="137.0" text="Activity" />
-                        <TableColumn prefWidth="101.0" text="Price" />
+                      <TableColumn prefWidth="198.0" text="Activity" />
                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="458.0">
                <children>
-                  <GridPane layoutX="28.0" layoutY="10.0" prefHeight="433.0" prefWidth="397.0">
+                  <GridPane layoutX="28.0" layoutY="178.0" prefHeight="265.0" prefWidth="434.0">
                     <columnConstraints>
                       <ColumnConstraints />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0" prefWidth="154.0" />
@@ -44,7 +42,7 @@
                         <Label text="Date:" GridPane.columnIndex="1" />
                         <Label text="Start time:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="End time:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <DatePicker prefHeight="25.0" prefWidth="225.0" GridPane.columnIndex="2" />
+                        <DatePicker prefHeight="25.0" prefWidth="243.0" GridPane.columnIndex="2" />
                         <ChoiceBox prefHeight="25.0" prefWidth="261.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <ChoiceBox prefHeight="25.0" prefWidth="244.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
@@ -54,6 +52,28 @@
                      </children>
                   </GridPane>
                   <Button layoutX="344.0" layoutY="445.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="81.0" text="Reserve" />
+                  <GridPane layoutX="28.0" layoutY="10.0" prefHeight="152.0" prefWidth="434.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="155.0" prefWidth="194.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.0" minWidth="239.0" prefWidth="240.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints vgrow="SOMETIMES" />
+                      <RowConstraints vgrow="SOMETIMES" />
+                      <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Price:" />
+                        <Label text="Age requirement:" GridPane.rowIndex="1" />
+                        <Label text="Height requirement:" GridPane.rowIndex="2" />
+                        <TextField editable="false" GridPane.columnIndex="1" />
+                        <TextField editable="false" prefHeight="25.0" prefWidth="241.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Instructor:" GridPane.rowIndex="3" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
                </children>
             </AnchorPane>
         </items>
