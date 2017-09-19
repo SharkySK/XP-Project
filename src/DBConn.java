@@ -62,4 +62,25 @@ public class DBConn {
         return instructorList;
     }
 
+    public void addActivity(String name, int price, int age, double height, int id) {
+        Connection connection = getConn();
+        String sql = "INSERT INTO `activity` (`id`, `name`, `price`, `age`, `height`, `instructor`) VALUES " +
+                "(NULL, ?, ?, ?, ?, ?)";
+
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setInt(2, price);
+            ps.setInt(3, age);
+            ps.setDouble(4, height);
+            ps.setInt(5, id);
+            ps.execute();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

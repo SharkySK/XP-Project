@@ -3,9 +3,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.cell.ChoiceBoxTableCell?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ActivityController">
    <children>
       <TableView fx:id="activityTable" prefHeight="376.0" prefWidth="156.0">
@@ -45,7 +45,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#createInstructor" text="Add instructor" />
             <Button mnemonicParsing="false" text="Save changes" />
-            <Button mnemonicParsing="false" text="Create activity" />
+            <Button mnemonicParsing="false" onAction="#createActivity" text="Create activity" />
          </children>
       </HBox>
    </children>
