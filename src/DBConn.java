@@ -3,10 +3,10 @@ import java.sql.DriverManager;
 
 public class DBConn {
 
-    private final String URL = "jdbc:mysql://fypanm.c8w1xrl7tum6.eu-central-1.rds.amazonaws.com:3306/";
-    private final String DB_NAME = "motorhome_system";
-    private final String USER = "mhadmin";
-    private final String PASS = "firstyearkea2k17";
+    private final String URL = "";
+    private final String DB_NAME = "";
+    private final String USER = "";
+    private final String PASS = "";
 
 
     public Connection getConn() {
