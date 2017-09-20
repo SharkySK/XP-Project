@@ -47,14 +47,15 @@ public class DBConn {
         ArrayList<Instructor> instructorList = new ArrayList<>();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 instructorList.add(new Instructor(
                         resultSet.getInt("id"),
                         resultSet.getString("name")
                 ));
             }
+            connection.close();
         } catch (SQLException ex) {
 
         }
@@ -62,7 +63,7 @@ public class DBConn {
         return instructorList;
     }
 
-    public void addActivity(String name, int price, int age, double height, int id) {
+    public void addActivity(String name, int price, int age, double height, int instructorId) {
         Connection connection = getConn();
         String sql = "INSERT INTO `activity` (`id`, `name`, `price`, `age`, `height`, `instructor`) VALUES " +
                 "(NULL, ?, ?, ?, ?, ?)";
@@ -74,13 +75,39 @@ public class DBConn {
             ps.setInt(2, price);
             ps.setInt(3, age);
             ps.setDouble(4, height);
-            ps.setInt(5, id);
+            ps.setInt(5, instructorId);
             ps.execute();
             connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Activity> getActivities() {
+        Connection connection = getConn();
+        String sql = "SELECT activity.id,activity.name,activity.price,activity.age,activity.height,instructor.name " +
+                "FROM `activity` JOIN `instructor` ON activity.instructor = instructor.id";
+        ArrayList<Activity> activityList = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                activityList.add(new Activity(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getInt(3),
+                        resultSet.getInt(4),
+                        resultSet.getDouble(5),
+                        resultSet.getString(6)
+                ));
+            }
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+        return activityList;
     }
 
 }
