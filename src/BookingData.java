@@ -20,7 +20,7 @@ public class BookingData {
         ArrayList<Booking> sorted = new ArrayList<>();
 
         for (Booking booking : bookingList) {
-            if (booking.getId() == activityId) {
+            if (booking.getActivityId() == activityId) {
                 sorted.add(booking);
             }
         }
