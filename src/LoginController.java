@@ -21,7 +21,7 @@ public class LoginController {
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 
