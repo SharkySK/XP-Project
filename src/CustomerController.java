@@ -88,7 +88,7 @@ public class CustomerController {
 
         String name = nameField.getText();
         String email = emailField.getText();
-        Integer phoneNo = checkInt(phoneNoField.getText());
+        String phoneNo = phoneNoField.getText();
         Integer partAmount = checkInt(participantsField.getText());
 
         if (name != null && !name.trim().isEmpty() &&
@@ -96,8 +96,16 @@ public class CustomerController {
                 phoneNo != null &&
                 partAmount != null) {
 
-            // save booking functionality*****************************************************************
-            msgLabel.setText("booking completed");
+            DBConn dbConn = new DBConn();
+            int bookingId = dbConn.addBooking(date, startTime, endTime,
+                    name, email, phoneNo, partAmount, activityId);
+
+            if (bookingId < 1) {
+                msgLabel.setText("booking not created");
+            } else {
+                msgLabel.setText("booking completed. ID: " + bookingId);
+            }
+
         } else {
 
             msgLabel.setText("invalid data input");
@@ -113,22 +121,16 @@ public class CustomerController {
         ArrayList<Booking> bookings = new ArrayList<>();
         bookings.addAll(bookingData.getBookingList());
 
-        System.out.println();
-
         for (Booking booking : bookings) {
 
-            System.out.println(booking.getStartTime());
-            System.out.println(booking.getEndTime());
-
-            if ((startTime > booking.getStartTime() && startTime < booking.getEndTime()) ||
-                    (endTime > booking.getStartTime() && endTime < booking.getEndTime()) ||
-                    (startTime < booking.getStartTime() && endTime > booking.getEndTime())) {
+            if ((startTime >= booking.getStartTime() && startTime < booking.getEndTime()) ||
+                    (endTime > booking.getStartTime() && endTime <= booking.getEndTime()) ||
+                    (startTime <= booking.getStartTime() && endTime >= booking.getEndTime())) {
 
                 return false;
             }
         }
 
-        System.out.println("available");
         return true;
     }
 
@@ -144,6 +146,15 @@ public class CustomerController {
 
     public void tableClicked(MouseEvent mouseEvent) {
 
+        Activity activity = activityTable.getSelectionModel().getSelectedItem();
+
+        if (activity != null) {
+
+            priceField.setText(activity.getPrice() + "");
+            ageField.setText(activity.getAge() + "");
+            heightField.setText(activity.getHeight() + "");
+            //instructorField.setText(activity.getPrice() + "");
+        }
     }
 
     private void loadActivities () {
