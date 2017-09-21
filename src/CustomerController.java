@@ -68,7 +68,19 @@ public class CustomerController {
 
     public void reserveButton(ActionEvent actionEvent) {
 
-        if (!checkDate()) {
+        LocalDate date = dateField.getValue();
+        int startTime = startTimeBox.getSelectionModel().getSelectedItem();
+        int endTime = endTimeBox.getSelectionModel().getSelectedItem();
+
+        if (activityTable.getSelectionModel().getSelectedItem() == null ||
+                startTime > endTime || date == null) {
+
+            msgLabel.setText("invalid data input");
+            return;
+        }
+        int activityId = activityTable.getSelectionModel().getSelectedItem().getId();
+
+        if (!checkDate(activityId, date, startTime, endTime)) {
 
             msgLabel.setText("activity not available");
             return;
@@ -92,22 +104,7 @@ public class CustomerController {
         }
     }
 
-    private boolean checkDate () {
-
-        LocalDate date = dateField.getValue();
-        int startTime = startTimeBox.getSelectionModel().getSelectedItem();
-        int endTime = endTimeBox.getSelectionModel().getSelectedItem();
-
-        if (activityTable.getSelectionModel().getSelectedItem() == null ||
-                startTime > endTime || date == null) {
-
-            System.out.println("null");
-            System.out.println(activityTable.getSelectionModel().getSelectedItem());
-            System.out.println(date);
-            return false;
-        }
-
-        int activityId = activityTable.getSelectionModel().getSelectedItem().getId();
+    private boolean checkDate (int activityId, LocalDate date, int startTime, int endTime) {
 
         BookingData bookingData = new BookingData();
         bookingData.loadFromDate(date);
@@ -116,16 +113,22 @@ public class CustomerController {
         ArrayList<Booking> bookings = new ArrayList<>();
         bookings.addAll(bookingData.getBookingList());
 
+        System.out.println();
+
         for (Booking booking : bookings) {
 
-            if ((booking.getStartTime() > startTime && booking.getStartTime() < endTime) ||
-                    (booking.getEndTime() > startTime && booking.getEndTime() < endTime) ||
-                    (booking.getStartTime() < startTime && booking.getEndTime() > endTime)) {
-                System.out.println("condition");
+            System.out.println(booking.getStartTime());
+            System.out.println(booking.getEndTime());
+
+            if ((startTime > booking.getStartTime() && startTime < booking.getEndTime()) ||
+                    (endTime > booking.getStartTime() && endTime < booking.getEndTime()) ||
+                    (startTime < booking.getStartTime() && endTime > booking.getEndTime())) {
+
                 return false;
             }
         }
 
+        System.out.println("available");
         return true;
     }
 
