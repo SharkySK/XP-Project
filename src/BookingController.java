@@ -16,6 +16,11 @@ public class BookingController {
     private BookingData bookingData;
     private Booking booking;
 
+    @FXML
+    public void initialize() {
+        bookingTableView.setItems(bookingData.getBookingList());
+    }
+
     private void searchBooking() {
 
 
