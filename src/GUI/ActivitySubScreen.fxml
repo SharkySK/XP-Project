@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.control.cell.ChoiceBoxTableCell?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ActivityController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ActivityController">
    <children>
       <TableView fx:id="activityTable" prefHeight="376.0" prefWidth="156.0">
-        <columns>
-          <TableColumn prefWidth="155.0" text="Activity" />
-        </columns>
+          <columns>
+              <TableColumn prefWidth="155.0" text="Activity">
+                  <cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
+          </columns>
       </TableView>
       <GridPane layoutX="167.0" layoutY="12.0" prefHeight="318.0" prefWidth="417.0">
         <columnConstraints>
@@ -41,10 +49,11 @@
             <TextField fx:id="addInstructorField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <HBox layoutX="313.0" layoutY="337.0" prefHeight="25.0" prefWidth="271.0">
+      <HBox layoutX="228.0" layoutY="337.0" prefHeight="25.0" prefWidth="356.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#clearFields" prefHeight="25.0" prefWidth="84.0" text="Clear fields" />
             <Button mnemonicParsing="false" onAction="#createInstructor" text="Add instructor" />
-            <Button mnemonicParsing="false" text="Save changes" />
+            <Button mnemonicParsing="false" onAction="#saveChanges" text="Save changes" />
             <Button mnemonicParsing="false" onAction="#createActivity" text="Create activity" />
          </children>
       </HBox>

@@ -86,10 +86,33 @@ public class DBConn {
         }
     }
 
+    public void updateActivity(int id, String name, int price, int age, double height, int instructorId) {
+        Connection connection = getConn();
+        String sql = "UPDATE `activity` SET `name` = ?, `price` = ?, `age` = ?, `height` = ?, `instructor` = ? " +
+                "WHERE `id` = ?";
+
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setInt(2, price);
+            ps.setInt(3, age);
+            ps.setDouble(4, height);
+            ps.setInt(5, instructorId);
+            ps.setInt(6, id);
+            ps.execute();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<Activity> getActivities() {
         Connection connection = getConn();
-        String sql = "SELECT activity.id,activity.name,activity.price,activity.age,activity.height,instructor.name " +
-                "FROM `activity` JOIN `instructor` ON activity.instructor = instructor.id";
+        String sql = "SELECT activity.id,activity.name,activity.price,activity.age,activity.height, " +
+                "activity.instructor, instructor.name FROM `activity` " +
+                "JOIN `instructor` ON activity.instructor = instructor.id";
         ArrayList<Activity> activityList = new ArrayList<>();
 
         try {
@@ -102,7 +125,7 @@ public class DBConn {
                         resultSet.getInt(3),
                         resultSet.getInt(4),
                         resultSet.getDouble(5),
-                        resultSet.getString(6)
+                        resultSet.getInt(6)
                 ));
             }
             connection.close();
