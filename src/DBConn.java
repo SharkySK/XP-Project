@@ -161,4 +161,48 @@ public class DBConn {
         }
         return bookings;
     }
+
+    public int addBooking(LocalDate date, int startTime, int endTime, String name,
+                          String email, String phoneNo, int partAmount, int activityId) {
+
+        int bookingId = 0;
+
+        Connection connection = getConn();
+        String sql = "INSERT INTO `booking` (`date`, `starttime`, `endtime`, `name`, `email`, " +
+                "`phonenr`, `participants`, `activity`) VALUES " +
+                "(?, ?, ?, ?, ?, ?, ?, ?)";
+
+        Calendar cStart = Calendar.getInstance();
+        cStart.set(Calendar.HOUR_OF_DAY, startTime);
+        Time timeStart = new Time(cStart.getTimeInMillis());
+        Calendar cEnd = Calendar.getInstance();
+        cEnd.set(Calendar.HOUR_OF_DAY, endTime);
+        Time timeEnd = new Time(cEnd.getTimeInMillis());
+
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setDate(1, Date.valueOf(date));
+            ps.setTime(2, timeStart);
+            ps.setTime(3, timeEnd);
+            ps.setString(4, name);
+            ps.setString(5, email);
+            ps.setString(6, phoneNo);
+            ps.setInt(7, partAmount);
+            ps.setInt(8, activityId);
+            ps.execute();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                bookingId = rs.getInt(1);
+            }
+
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return bookingId;
+    }
 }
