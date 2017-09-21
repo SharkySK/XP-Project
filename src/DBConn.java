@@ -135,6 +135,34 @@ public class DBConn {
         return activityList;
     }
 
+    public ArrayList<Booking> getAllBookings() {
+        ArrayList<Booking> bookingList = new ArrayList<>();
+        Connection connection = getConn();
+        String sql = "SELECT * FROM `booking`";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                bookingList.add(new Booking(
+                        resultSet.getInt(1),
+                        resultSet.getDate(2).toLocalDate(),
+                        resultSet.getInt(3),
+                        resultSet.getInt(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getInt(8),
+                        resultSet.getInt(9)
+                ));
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return bookingList;
+    }
+
     public ArrayList<Booking> getBookingsByDate (LocalDate date) {
 
         ArrayList<Booking> bookings = new ArrayList<>();
