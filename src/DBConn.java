@@ -1,6 +1,7 @@
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DBConn {
 
@@ -146,9 +147,7 @@ public class DBConn {
         Connection connection = getConn();
 
         String sql = "SELECT * FROM `booking` " +
-                /*"booking.id, booking.date, booking.starttime, booking.endtime, booking.name," +
-                "booking.email, booking.phonenr, booking.participants, booking.activity" +*/
-                "WHERE booking.date = ?"/* + Date.valueOf(date)*/;
+                "WHERE booking.date = ?";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -157,11 +156,21 @@ public class DBConn {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
+
+                Calendar calendar = Calendar.getInstance();
+
+                calendar.setTime(resultSet.getTime(3));
+                int startTime = calendar.get(Calendar.HOUR_OF_DAY);
+
+                calendar.setTime(resultSet.getTime(4));
+                int endTime = calendar.get(Calendar.HOUR_OF_DAY);
+
+
                 bookings.add(new Booking(
                         resultSet.getInt(1),
                         resultSet.getDate(2).toLocalDate(),
-                        resultSet.getInt(3),
-                        resultSet.getInt(4),
+                        startTime,
+                        endTime,
                         resultSet.getString(5),
                         resultSet.getString(6),
                         resultSet.getString(7),
