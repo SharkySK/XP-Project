@@ -153,7 +153,15 @@ public class CustomerController {
             priceField.setText(activity.getPrice() + "");
             ageField.setText(activity.getAge() + "");
             heightField.setText(activity.getHeight() + "");
-            //instructorField.setText(activity.getPrice() + "");
+
+            InstructorData instructors = new InstructorData();
+            instructors.loadList();
+            Instructor instructor = instructors.searchInstructor(activity.getInstructorId());
+            if (instructor != null) {
+                instructorField.setText(instructor.getName());
+            } else {
+                instructorField.setText("");
+            }
         }
     }
 
