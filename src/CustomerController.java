@@ -55,6 +55,7 @@ public class CustomerController {
 
     @FXML
     public void initialize() {
+        loadInstructors();
 
         instructorBox.setConverter(new StringConverter<Instructor>() {
             @Override
