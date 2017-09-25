@@ -61,7 +61,7 @@
       <TextField fx:id="filterField" layoutY="350.0" prefHeight="25.0" prefWidth="158.0" promptText="Search booking" />
       <HBox layoutX="378.0" layoutY="338.0" prefHeight="25.0" prefWidth="201.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Cancel booking" />
+            <Button mnemonicParsing="false" onAction="#deleteBookings" prefHeight="25.0" prefWidth="100.0" text="Cancel booking" />
             <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Save changes" />
          </children>
       </HBox>
