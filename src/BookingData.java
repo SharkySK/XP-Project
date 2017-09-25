@@ -26,7 +26,7 @@ public class BookingData {
         }
         bookingList = FXCollections.observableArrayList(sorted);
     }
-    
+
     public ArrayList<Booking> search(String name) {
         ArrayList<Booking> arrayList = new ArrayList<>();
         for (Booking booking : bookingList) {
@@ -37,10 +37,10 @@ public class BookingData {
         return arrayList;
     }
 
-    public void loadFromDate(LocalDate date) {
+    public void loadFromDate(LocalDate startDate, LocalDate endDate) {
 
         DBConn dbConn = new DBConn();
-        bookingList = FXCollections.observableArrayList(dbConn.getBookingsByDate(date));
+        bookingList = FXCollections.observableArrayList(dbConn.getBookingsByDates(startDate, endDate));
     }
 
     public void loadBookings() {

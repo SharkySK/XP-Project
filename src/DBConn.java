@@ -158,11 +158,11 @@ public class DBConn {
         return bookingList;
     }
 
-    public ArrayList<Booking> getBookingsByDate (LocalDate date) {
+    public ArrayList<Booking> getBookingsByDates(LocalDate startDate, LocalDate endDate) {
 
         ArrayList<Booking> bookings = new ArrayList<>();
 
-        if (date == null) {
+        if (startDate == null) {
 
             return bookings;
         }
@@ -170,11 +170,13 @@ public class DBConn {
         Connection connection = getConn();
 
         String sql = "SELECT * FROM `booking` " +
-                "WHERE booking.date = ?";
+                "WHERE mydate >= ? \n" +
+                "AND mydate <= ?";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setDate(1, Date.valueOf(date));
+            ps.setDate(1, Date.valueOf(startDate));
+            ps.setDate(2, Date.valueOf(endDate));
 
             ResultSet resultSet = ps.executeQuery();
 
