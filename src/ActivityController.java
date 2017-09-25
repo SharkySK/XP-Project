@@ -2,10 +2,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.util.StringConverter;
 
 public class ActivityController {
 //don't forget to put them in order for tab // to doooo
@@ -20,28 +18,13 @@ public class ActivityController {
     @FXML
     private TextField heightField;
     @FXML
-    private ChoiceBox<Instructor> instructorBox;
-    @FXML
     private TextField addInstructorField;
 
-    private InstructorData instructorData = new InstructorData();
     private ActivityData activityData = new ActivityData();
 
     @FXML
     public void initialize() {
 
-        instructorBox.setConverter(new StringConverter<Instructor>() {
-            @Override
-            public String toString(Instructor instructor) {
-                return instructor.getName();
-            }
-
-            @Override
-            public Instructor fromString(String string) {
-                return null;
-            }
-        });
-        loadInstructors();
         loadActivities();
 
         activityTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
@@ -61,7 +44,7 @@ public class ActivityController {
         if (activity != null) {
             DBConn dbConn = new DBConn();
             dbConn.addActivity(activity.getName(), activity.getPrice(), activity.getAge(),
-                    activity.getHeight(), activity.getInstructorId());
+                    activity.getHeight());
             loadActivities();
         }
     }
@@ -72,7 +55,6 @@ public class ActivityController {
         String name = addInstructorField.getText();
         if (name != null && !name.trim().isEmpty()) {
             dbConn.addInstructor(name);
-            loadInstructors();
         }
     }
 
@@ -83,7 +65,7 @@ public class ActivityController {
         if (activity != null) {
             DBConn dbConn = new DBConn();
             dbConn.updateActivity(activity.getId(), activity.getName(), activity.getPrice(),
-                    activity.getAge(), activity.getHeight(), activity.getInstructorId());
+                    activity.getAge(), activity.getHeight());
             loadActivities();
         }
     }
@@ -94,7 +76,6 @@ public class ActivityController {
         priceField.setText("");
         ageField.setText("");
         heightField.setText("");
-        instructorBox.getSelectionModel().select(null);
         addInstructorField.setText("");
     }
 
@@ -106,10 +87,8 @@ public class ActivityController {
         if (name != null && !name.trim().isEmpty() &&
                 price != null &&
                 age != null &&
-                height != null &&
-                !instructorBox.getSelectionModel().isEmpty()) {
-            return new Activity(activityId == null ? 0 : activityId, name, price, age, height,
-                    instructorBox.getSelectionModel().getSelectedItem().getId());
+                height != null) {
+            return new Activity(activityId == null ? 0 : activityId, name, price, age, height);
         }
         return null;
     }
@@ -119,13 +98,6 @@ public class ActivityController {
         priceField.setText(String.valueOf(activity.getPrice()));
         ageField.setText(String.valueOf(activity.getAge()));
         heightField.setText(String.valueOf(activity.getHeight()));
-        instructorBox.getSelectionModel().select(instructorData.searchInstructor(activity.getInstructorId()));
-
-    }
-
-    private void loadInstructors() {
-        instructorData.loadList();
-        instructorBox.setItems(instructorData.getInstructorList());
     }
 
     private void loadActivities() {
