@@ -259,7 +259,7 @@ public class DBConn {
         try{
 
             Connection connection = getConn();
-            String sql = "DELETE FROM 'booking' WHERE id=?";
+            String sql = "DELETE FROM `booking` WHERE id=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1,bookingId);
             ps.executeUpdate();
