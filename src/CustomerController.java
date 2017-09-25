@@ -1,3 +1,5 @@
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -5,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,8 +29,6 @@ public class CustomerController {
     @FXML
     private TextField heightField;
     @FXML
-    private TextField instructorField;
-    @FXML
     private DatePicker dateField;
     @FXML
     private ChoiceBox<Integer> startTimeBox;
@@ -42,15 +43,30 @@ public class CustomerController {
     @FXML
     private TextField participantsField;
     @FXML
+    private ChoiceBox<Instructor> instructorBox;
+    @FXML
     public Label msgLabel;
 
     private ActivityData activityData = new ActivityData();
+    private InstructorData instructorData = new InstructorData();
 
     private final int OPENTIME = 7;
     private final int CLOSETIME = 20;
 
     @FXML
     public void initialize() {
+
+        instructorBox.setConverter(new StringConverter<Instructor>() {
+            @Override
+            public String toString(Instructor instructor) {
+                return instructor.getName();
+            }
+
+            @Override
+            public Instructor fromString(String string) {
+                return null;
+            }
+        });
 
         activityClmn.setCellValueFactory(new PropertyValueFactory<Activity, String>("Name"));
         loadActivities();
@@ -64,6 +80,27 @@ public class CustomerController {
         startTimeBox.setValue(OPENTIME);
         endTimeBox.setItems(bookingTimes);
         endTimeBox.setValue(OPENTIME + 1);
+
+        activityTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
+            @Override
+            public void changed(ObservableValue<? extends Activity> observable, Activity oldValue, Activity newValue) {
+                Activity activity = activityTable.getSelectionModel().getSelectedItem();
+                if (activity != null) {
+                    setFields(activity);
+                }
+            }
+        });
+    }
+
+    private void setFields(Activity activity) {
+        priceField.setText(String.valueOf(activity.getPrice()));
+        ageField.setText(String.valueOf(activity.getAge()));
+        heightField.setText(String.valueOf(activity.getHeight()));
+    }
+
+    private void loadInstructors() {
+        instructorData.loadList();
+        instructorBox.setItems(instructorData.getInstructorList());
     }
 
     public void reserveButton(ActionEvent actionEvent) {
@@ -94,11 +131,12 @@ public class CustomerController {
         if (name != null && !name.trim().isEmpty() &&
                 email != null && !email.trim().isEmpty() &&
                 phoneNo != null &&
-                partAmount != null) {
+                partAmount != null &&
+                !instructorBox.getSelectionModel().isEmpty()) {
 
             DBConn dbConn = new DBConn();
-            int bookingId = dbConn.addBooking(date, startTime, endTime,
-                    name, email, phoneNo, partAmount, activityId);
+            int bookingId = dbConn.addBooking(date, startTime, endTime, name, email, phoneNo, partAmount,
+                    activityId, instructorBox.getSelectionModel().getSelectedItem().getId());
 
             if (bookingId < 1) {
                 msgLabel.setText("booking not created");
@@ -141,27 +179,6 @@ public class CustomerController {
         }
         catch (NumberFormatException e) {
             return null;
-        }
-    }
-
-    public void tableClicked(MouseEvent mouseEvent) {
-
-        Activity activity = activityTable.getSelectionModel().getSelectedItem();
-
-        if (activity != null) {
-
-            priceField.setText(activity.getPrice() + "");
-            ageField.setText(activity.getAge() + "");
-            heightField.setText(activity.getHeight() + "");
-
-            InstructorData instructors = new InstructorData();
-            instructors.loadList();
-            Instructor instructor = instructors.searchInstructor(activity.getInstructorId());
-            if (instructor != null) {
-                instructorField.setText(instructor.getName());
-            } else {
-                instructorField.setText("");
-            }
         }
     }
 

@@ -65,10 +65,10 @@ public class DBConn {
         return instructorList;
     }
 
-    public void addActivity(String name, int price, int age, double height, int instructorId) {
+    public void addActivity(String name, int price, int age, double height) {
         Connection connection = getConn();
-        String sql = "INSERT INTO `activity` (`id`, `name`, `price`, `age`, `height`, `instructor`) VALUES " +
-                "(NULL, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `activity` (`id`, `name`, `price`, `age`, `height`) VALUES " +
+                "(NULL, ?, ?, ?, ?)";
 
         try {
 
@@ -77,7 +77,6 @@ public class DBConn {
             ps.setInt(2, price);
             ps.setInt(3, age);
             ps.setDouble(4, height);
-            ps.setInt(5, instructorId);
             ps.execute();
             connection.close();
 
@@ -86,10 +85,9 @@ public class DBConn {
         }
     }
 
-    public void updateActivity(int id, String name, int price, int age, double height, int instructorId) {
+    public void updateActivity(int id, String name, int price, int age, double height) {
         Connection connection = getConn();
-        String sql = "UPDATE `activity` SET `name` = ?, `price` = ?, `age` = ?, `height` = ?, `instructor` = ? " +
-                "WHERE `id` = ?";
+        String sql = "UPDATE `activity` SET `name` = ?, `price` = ?, `age` = ?, `height` = ? WHERE `id` = ?";
 
         try {
 
@@ -98,8 +96,7 @@ public class DBConn {
             ps.setInt(2, price);
             ps.setInt(3, age);
             ps.setDouble(4, height);
-            ps.setInt(5, instructorId);
-            ps.setInt(6, id);
+            ps.setInt(5, id);
             ps.execute();
             connection.close();
 
@@ -110,9 +107,7 @@ public class DBConn {
 
     public ArrayList<Activity> getActivities() {
         Connection connection = getConn();
-        String sql = "SELECT activity.id,activity.name,activity.price,activity.age,activity.height, " +
-                "activity.instructor, instructor.name FROM `activity` " +
-                "JOIN `instructor` ON activity.instructor = instructor.id";
+        String sql = "SELECT * FROM `activity`";
         ArrayList<Activity> activityList = new ArrayList<>();
 
         try {
@@ -124,8 +119,7 @@ public class DBConn {
                         resultSet.getString(2),
                         resultSet.getInt(3),
                         resultSet.getInt(4),
-                        resultSet.getDouble(5),
-                        resultSet.getInt(6)
+                        resultSet.getDouble(5)
                 ));
             }
             connection.close();
@@ -133,6 +127,35 @@ public class DBConn {
 
         }
         return activityList;
+    }
+
+    public ArrayList<Booking> getAllBookings() {
+        ArrayList<Booking> bookingList = new ArrayList<>();
+        Connection connection = getConn();
+        String sql = "SELECT * FROM `booking`";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                bookingList.add(new Booking(
+                        resultSet.getInt(1),
+                        resultSet.getDate(2).toLocalDate(),
+                        resultSet.getInt(3),
+                        resultSet.getInt(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getInt(8),
+                        resultSet.getInt(9),
+                        resultSet.getInt(10)
+                ));
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return bookingList;
     }
 
     public ArrayList<Booking> getBookingsByDate (LocalDate date) {
@@ -175,25 +198,26 @@ public class DBConn {
                         resultSet.getString(6),
                         resultSet.getString(7),
                         resultSet.getInt(8),
-                        resultSet.getInt(9)
+                        resultSet.getInt(9),
+                        resultSet.getInt(10)
                 ));
             }
             connection.close();
         } catch (SQLException ex) {
-
+            ex.printStackTrace();
         }
         return bookings;
     }
 
     public int addBooking(LocalDate date, int startTime, int endTime, String name,
-                          String email, String phoneNo, int partAmount, int activityId) {
+                          String email, String phoneNo, int partAmount, int activityId, int instructorId) {
 
         int bookingId = 0;
 
         Connection connection = getConn();
         String sql = "INSERT INTO `booking` (`date`, `starttime`, `endtime`, `name`, `email`, " +
-                "`phonenr`, `participants`, `activity`) VALUES " +
-                "(?, ?, ?, ?, ?, ?, ?, ?)";
+                "`phonenr`, `participants`, `activity`, `instructorId`) VALUES " +
+                "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Calendar cStart = Calendar.getInstance();
         cStart.set(Calendar.HOUR_OF_DAY, startTime);
@@ -213,6 +237,7 @@ public class DBConn {
             ps.setString(6, phoneNo);
             ps.setInt(7, partAmount);
             ps.setInt(8, activityId);
+            ps.setInt(9, instructorId);
             ps.execute();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -228,4 +253,20 @@ public class DBConn {
 
         return bookingId;
     }
+
+    public void deleteBooking(int bookingId){
+
+        try{
+
+            Connection connection = getConn();
+            String sql = "DELETE FROM 'booking' WHERE id=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1,bookingId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

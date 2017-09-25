@@ -1,6 +1,9 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class InstructorData {
 
     private ObservableList<Instructor> instructorList = FXCollections.observableArrayList();
@@ -21,6 +24,13 @@ public class InstructorData {
             }
         }
         return null;
+    }
+
+    public Instructor getRandomInstructor(ArrayList<Instructor> array) {
+        Random randomGenerator = new Random();
+        int index = randomGenerator.nextInt(array.size());
+        Instructor instructor = array.get(index);
+        return instructor;
     }
 
 }

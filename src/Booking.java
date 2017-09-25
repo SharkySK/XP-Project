@@ -14,9 +14,10 @@ public class Booking {
     private String phoneNo;
     private int partAmount;
     private int activityId;
+    private int instructorId;
 
     public Booking(int id, LocalDate date, int startTime, int endTime, String name,
-                   String email, String phoneNo, int partAmount, int activityId) {
+                   String email, String phoneNo, int partAmount, int activityId, int instructorId) {
         this.id = id;
         this.date = date;
         this.startTime = startTime;
@@ -26,6 +27,7 @@ public class Booking {
         this.phoneNo = phoneNo;
         this.partAmount = partAmount;
         this.activityId = activityId;
+        this.instructorId = instructorId;
     }
 
     public int getId() {
@@ -62,5 +64,9 @@ public class Booking {
 
     public int getActivityId() {
         return activityId;
+    }
+
+    public int getInstructorId() {
+        return instructorId;
     }
 }
