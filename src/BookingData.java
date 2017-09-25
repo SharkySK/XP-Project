@@ -27,6 +27,18 @@ public class BookingData {
         bookingList = FXCollections.observableArrayList(sorted);
     }
 
+    public void sortByInstructor (int instructorId) {
+
+        ArrayList<Booking> sorted = new ArrayList<>();
+
+        for (Booking booking : bookingList) {
+            /*if (booking.getInstructorId() == instructorId) {
+                sorted.add(booking);
+            }*/
+        }
+        bookingList = FXCollections.observableArrayList(sorted);
+    }
+
     public void loadFromDate(LocalDate date) {
 
         DBConn dbConn = new DBConn();
