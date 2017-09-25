@@ -256,18 +256,17 @@ public class DBConn {
         return bookingId;
     }
 
-    public void deleteBooking(int bookingId){
-
-        try{
-
-            Connection connection = getConn();
-            String sql = "DELETE FROM 'booking' WHERE id=?";
+    public void deleteBooking(int bookingId) {
+        Connection connection = getConn();
+        String sql = "DELETE FROM `booking` WHERE id = ?";
+        try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1,bookingId);
-            ps.executeUpdate();
+            ps.setInt(1, bookingId);
+            ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 
 
