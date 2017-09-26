@@ -31,6 +31,11 @@ public class AdminController {
     }
 
     @FXML
+    private void instructorScreen(ActionEvent e) {
+        changeAnchor("GUI/InstructorSubScreen.fxml");
+    }
+
+    @FXML
     private void logout(ActionEvent e) {
         Parent root;
         try {
