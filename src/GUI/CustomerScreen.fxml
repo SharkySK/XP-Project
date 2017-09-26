@@ -87,6 +87,7 @@
                         <TextField fx:id="heightField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
+                  <Button layoutX="28.0" layoutY="445.0" mnemonicParsing="false" onAction="#logout" prefHeight="39.0" prefWidth="81.0" text="Logout" />
                </children>
             </AnchorPane>
         </items>

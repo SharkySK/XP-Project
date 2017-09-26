@@ -14,4 +14,13 @@ public class ActivityData {
         activityList = FXCollections.observableArrayList(dbConn.getActivities());
     }
 
+    public Activity searchActivity(int id) {
+        for (Activity activity : activityList) {
+            if (activity.getId() == id) {
+                return activity;
+            }
+        }
+        return null;
+    }
+
 }

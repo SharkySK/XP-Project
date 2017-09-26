@@ -4,11 +4,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -55,6 +61,7 @@ public class CustomerController {
 
     @FXML
     public void initialize() {
+        loadInstructors();
 
         instructorBox.setConverter(new StringConverter<Instructor>() {
             @Override
@@ -101,6 +108,21 @@ public class CustomerController {
     private void loadInstructors() {
         instructorData.loadList();
         instructorBox.setItems(instructorData.getInstructorList());
+    }
+
+    @FXML
+    private void logout(ActionEvent e) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("GUI/LoginScreen.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Login screen");
+            stage.setScene(new Scene(root));
+            stage.show();
+            ((Node) e.getSource()).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void reserveButton(ActionEvent actionEvent) {
