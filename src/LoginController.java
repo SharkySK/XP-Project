@@ -29,7 +29,7 @@ public class LoginController {
     private void customerScreen(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("GUI/CustomerScreen.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("GUI/CustomerMain.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Customer screen");
             stage.setScene(new Scene(root));

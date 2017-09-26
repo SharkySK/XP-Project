@@ -52,6 +52,8 @@ public class CustomerController {
     private ChoiceBox<Instructor> instructorBox;
     @FXML
     public Label msgLabel;
+    @FXML
+    private Button candshirt;
 
     private ActivityData activityData = new ActivityData();
     private InstructorData instructorData = new InstructorData();
@@ -108,21 +110,6 @@ public class CustomerController {
     private void loadInstructors() {
         instructorData.loadList();
         instructorBox.setItems(instructorData.getInstructorList());
-    }
-
-    @FXML
-    private void logout(ActionEvent e) {
-        Parent root;
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("GUI/LoginScreen.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Login screen");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Node) e.getSource()).getScene().getWindow().hide();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
     public void reserveButton(ActionEvent actionEvent) {
@@ -208,5 +195,10 @@ public class CustomerController {
 
         activityData.loadList();
         activityTable.setItems(activityData.getActivityList());
+    }
+
+    @FXML
+    private void openCandy(){
+
     }
 }
