@@ -170,8 +170,8 @@ public class DBConn {
         Connection connection = getConn();
 
         String sql = "SELECT * FROM `booking` " +
-                "WHERE mydate >= ? \n" +
-                "AND mydate <= ?";
+                "WHERE date >= ? \n" +
+                "AND date <= ?";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
