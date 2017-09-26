@@ -38,6 +38,8 @@
             <TextField fx:id="partField" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <Label text="Activity:" GridPane.columnIndex="1" />
             <ChoiceBox fx:id="activityBox" prefHeight="25.0" prefWidth="273.0" GridPane.columnIndex="2" />
+            <ChoiceBox fx:id="instructorBox" prefHeight="25.0" prefWidth="276.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Label text="Instructor:" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
          <columnConstraints>
             <ColumnConstraints />
@@ -45,6 +47,7 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.0" minWidth="10.0" prefWidth="271.0" />
          </columnConstraints>
          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -66,7 +69,7 @@
       <HBox layoutX="378.0" layoutY="338.0" prefHeight="25.0" prefWidth="201.0">
          <children>
             <Button mnemonicParsing="false" onAction="#deleteBookings" prefHeight="25.0" prefWidth="100.0" text="Cancel booking" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Save changes" />
+            <Button mnemonicParsing="false" onAction="#editBooking" prefHeight="25.0" prefWidth="100.0" text="Save changes" />
          </children>
       </HBox>
    </children>

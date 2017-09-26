@@ -254,6 +254,44 @@ public class DBConn {
         return bookingId;
     }
 
+    public void updateBooking(LocalDate date, int startTime, int endTime, String name, String email, String phoneNo,
+                              int partAmount, int activityId, int instructorId, int bookingId) {
+
+        Connection connection = getConn();
+        String sql = "UPDATE `booking` SET `date`=?,`starttime`=?,`endtime`=?," +
+                "`name`=?,`email`=?,`phonenr`=?,`participants`=?,`activity`=?," +
+                "`instructorId`=? WHERE `id`=?";
+
+        Calendar cStart = Calendar.getInstance();
+        cStart.set(Calendar.HOUR_OF_DAY, startTime);
+        Time timeStart = new Time(cStart.getTimeInMillis());
+        Calendar cEnd = Calendar.getInstance();
+        cEnd.set(Calendar.HOUR_OF_DAY, endTime);
+        Time timeEnd = new Time(cEnd.getTimeInMillis());
+
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setDate(1, Date.valueOf(date));
+            ps.setTime(2, timeStart);
+            ps.setTime(3, timeEnd);
+            ps.setString(4, name);
+            ps.setString(5, email);
+            ps.setString(6, phoneNo);
+            ps.setInt(7, partAmount);
+            ps.setInt(8, activityId);
+            ps.setInt(9, instructorId);
+            ps.setInt(10, bookingId);
+
+            ps.execute();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void deleteBooking(int bookingId) {
         Connection connection = getConn();
         String sql = "DELETE FROM `booking` WHERE id = ?";
