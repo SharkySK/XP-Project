@@ -29,8 +29,7 @@ public class InstructorData {
     public Instructor getRandomInstructor(ArrayList<Instructor> array) {
         Random randomGenerator = new Random();
         int index = randomGenerator.nextInt(array.size());
-        Instructor instructor = array.get(index);
-        return instructor;
+        return array.get(index);
     }
 
 }

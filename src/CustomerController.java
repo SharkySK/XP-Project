@@ -205,7 +205,6 @@ public class CustomerController {
     }
 
     private void loadActivities () {
-
         activityData.loadList();
         activityTable.setItems(activityData.getActivityList());
     }

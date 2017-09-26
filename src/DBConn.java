@@ -29,7 +29,7 @@ public class DBConn {
 
     public void addInstructor(String name) {
         Connection connection = getConn();
-        String sql = "INSERT INTO `instructor` (`id`, `name`) VALUES (NULL, ?)";
+        String sql = "INSERT INTO `instructor` (`id`, `name`, `workdays`) VALUES (NULL, ?, 0)";
 
         try {
 
@@ -54,7 +54,8 @@ public class DBConn {
             while (resultSet.next()) {
                 instructorList.add(new Instructor(
                         resultSet.getInt("id"),
-                        resultSet.getString("name")
+                        resultSet.getString("name"),
+                        resultSet.getInt("workdays")
                 ));
             }
             connection.close();
