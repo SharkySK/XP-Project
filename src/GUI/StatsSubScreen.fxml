@@ -18,6 +18,6 @@
             <TableColumn prefWidth="100.0" text="Participants" />
         </columns>
       </TableView>
-      <Button fx:id="loadBtn" layoutX="34.0" layoutY="295.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="174.0" text="Load" />
+      <Button fx:id="loadBtn" layoutX="34.0" layoutY="295.0" mnemonicParsing="false" onAction="#showStats" prefHeight="53.0" prefWidth="174.0" text="Load" />
    </children>
 </AnchorPane>
