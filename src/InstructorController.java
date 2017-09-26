@@ -18,7 +18,7 @@ public class InstructorController {
 
     @FXML
     private void modifyWorkdays(ActionEvent e) {
-        
+
     }
 
 }
