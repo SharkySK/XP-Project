@@ -47,4 +47,18 @@ public class BookingData {
         DBConn dbConn = new DBConn();
         bookingList.setAll(dbConn.getAllBookings());
     }
+
+    public boolean removeBooking(int bookingId) {
+
+        int loops = bookingList.size();
+        for (int i = 0; i < loops; i++) {
+
+            if (bookingList.get(i).getId() == bookingId) {
+                bookingList.remove(i);
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
