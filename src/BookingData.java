@@ -37,14 +37,28 @@ public class BookingData {
         return arrayList;
     }
 
-    public void loadFromDate(LocalDate date) {
+    public void loadFromDate(LocalDate startDate, LocalDate endDate) {
 
         DBConn dbConn = new DBConn();
-        bookingList = FXCollections.observableArrayList(dbConn.getBookingsByDate(date));
+        bookingList = FXCollections.observableArrayList(dbConn.getBookingsByDates(startDate, endDate));
     }
 
     public void loadBookings() {
         DBConn dbConn = new DBConn();
         bookingList.setAll(dbConn.getAllBookings());
+    }
+
+    public boolean removeBooking(int bookingId) {
+
+        int loops = bookingList.size();
+        for (int i = 0; i < loops; i++) {
+
+            if (bookingList.get(i).getId() == bookingId) {
+                bookingList.remove(i);
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2017 at 01:57 PM
+-- Generation Time: Sep 26, 2017 at 11:07 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -63,6 +63,18 @@ CREATE TABLE `booking` (
   `instructorId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`id`, `date`, `starttime`, `endtime`, `name`, `email`, `phonenr`, `participants`, `activity`, `instructorId`) VALUES
+(2, '2017-09-12', '07:00:36', '08:00:36', 'tyr', 'trt', 'tyr', 65, 1, 7),
+(3, '2017-09-12', '07:00:41', '08:00:41', 'tyr', 'trt', 'tyr', 65, 2, 8),
+(4, '2017-09-12', '07:00:43', '08:00:43', 'tyr', 'trt', 'tyr', 65, 3, 8),
+(5, '2017-09-12', '07:00:46', '08:00:46', 'tyr', 'trt', 'tyr', 65, 4, 7),
+(6, '2017-09-12', '07:08:15', '08:08:15', 'yutu80', 'trt', 'tyr', 65, 1, 8),
+(7, '2017-09-12', '07:03:49', '08:03:49', 'yutuytuytuyt', 'trt', 'tyr', 65, 1, 8);
+
 -- --------------------------------------------------------
 
 --
@@ -71,15 +83,17 @@ CREATE TABLE `booking` (
 
 CREATE TABLE `instructor` (
   `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL
+  `name` varchar(30) NOT NULL,
+  `workdays` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `instructor`
 --
 
-INSERT INTO `instructor` (`id`, `name`) VALUES
-(7, 'fucktard');
+INSERT INTO `instructor` (`id`, `name`, `workdays`) VALUES
+(7, 'fucktard', 0),
+(8, 'fuuuuuuu', 0);
 
 --
 -- Indexes for dumped tables
@@ -118,12 +132,12 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `instructor`
 --
 ALTER TABLE `instructor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --

@@ -145,15 +145,17 @@ public class BookingController {
         int startTime = startField.getSelectionModel().getSelectedItem();
         int endTime = endField.getSelectionModel().getSelectedItem();
 
-        if (bookingTableView.getSelectionModel().getSelectedItem() == null ||
+        Booking current = bookingTableView.getSelectionModel().getSelectedItem();
+
+        if (current == null ||
                 startTime > endTime || date == null) {
             return;
         }
-        int activityId = bookingTableView.getSelectionModel().getSelectedItem().getActivityId();
-// need to change checkdate so that it ignores the current booking......
-       // if (!checkDate(activityId, date, startTime, endTime)) {
-       //     return;
-       // }
+        int activityId = current.getActivityId();
+// should be fixed now
+        if (!checkDate(activityId, date, startTime, endTime, current.getId())) {
+            return;
+        }
 
         String name = nameField.getText();
         String email = emailField.getText();
@@ -175,11 +177,13 @@ public class BookingController {
         }
     }
 
-    private boolean checkDate (int activityId, LocalDate date, int startTime, int endTime) {
+    private boolean checkDate (int activityId, LocalDate date,
+                               int startTime, int endTime, int current) {
 
         BookingData bookingData = new BookingData();
-        bookingData.loadFromDate(date);
+        bookingData.loadFromDate(date, date);
         bookingData.sortByActivity(activityId);
+        bookingData.removeBooking(current);
 
         ArrayList<Booking> bookings = new ArrayList<>();
         bookings.addAll(bookingData.getBookingList());

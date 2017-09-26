@@ -29,7 +29,7 @@ public class DBConn {
 
     public void addInstructor(String name) {
         Connection connection = getConn();
-        String sql = "INSERT INTO `instructor` (`id`, `name`) VALUES (NULL, ?)";
+        String sql = "INSERT INTO `instructor` (`id`, `name`, `workdays`) VALUES (NULL, ?, 0)";
 
         try {
 
@@ -54,7 +54,8 @@ public class DBConn {
             while (resultSet.next()) {
                 instructorList.add(new Instructor(
                         resultSet.getInt("id"),
-                        resultSet.getString("name")
+                        resultSet.getString("name"),
+                        resultSet.getInt("workdays")
                 ));
             }
             connection.close();
@@ -158,11 +159,11 @@ public class DBConn {
         return bookingList;
     }
 
-    public ArrayList<Booking> getBookingsByDate (LocalDate date) {
+    public ArrayList<Booking> getBookingsByDates(LocalDate startDate, LocalDate endDate) {
 
         ArrayList<Booking> bookings = new ArrayList<>();
 
-        if (date == null) {
+        if (startDate == null) {
 
             return bookings;
         }
@@ -170,11 +171,13 @@ public class DBConn {
         Connection connection = getConn();
 
         String sql = "SELECT * FROM `booking` " +
-                "WHERE booking.date = ?";
+                "WHERE date >= ? \n" +
+                "AND date <= ?";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setDate(1, Date.valueOf(date));
+            ps.setDate(1, Date.valueOf(startDate));
+            ps.setDate(2, Date.valueOf(endDate));
 
             ResultSet resultSet = ps.executeQuery();
 
