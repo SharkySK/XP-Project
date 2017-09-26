@@ -17,8 +17,6 @@ public class ActivityController {
     private TextField ageField;
     @FXML
     private TextField heightField;
-    @FXML
-    private TextField addInstructorField;
 
     private ActivityData activityData = new ActivityData();
 
@@ -50,15 +48,6 @@ public class ActivityController {
     }
 
     @FXML
-    private void createInstructor(ActionEvent e) {
-        DBConn dbConn = new DBConn();
-        String name = addInstructorField.getText();
-        if (name != null && !name.trim().isEmpty()) {
-            dbConn.addInstructor(name);
-        }
-    }
-
-    @FXML
     private void saveChanges(ActionEvent e) {
         int activityId = activityTable.getSelectionModel().getSelectedItem().getId();
         Activity activity = checkActivities(activityId);
@@ -76,7 +65,6 @@ public class ActivityController {
         priceField.setText("");
         ageField.setText("");
         heightField.setText("");
-        addInstructorField.setText("");
     }
 
     private Activity checkActivities(Integer activityId) {
