@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class SellingController {
 
@@ -20,4 +21,12 @@ public class SellingController {
     public TextField phoneField;
     public Button cancelBtn;
     public Button purchaseBtn;
+
+    public void productsClick(MouseEvent mouseEvent) {
+
+    }
+
+    public void selectedClick(MouseEvent mouseEvent) {
+        
+    }
 }
