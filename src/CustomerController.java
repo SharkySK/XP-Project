@@ -175,7 +175,7 @@ public class CustomerController {
     private boolean checkDate (int activityId, LocalDate date, int startTime, int endTime) {
 
         BookingData bookingData = new BookingData();
-        bookingData.loadFromDate(date);
+        bookingData.loadFromDate(date, date);
         bookingData.sortByActivity(activityId);
 
         ArrayList<Booking> bookings = new ArrayList<>();
