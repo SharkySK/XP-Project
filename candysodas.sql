@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2017 at 04:19 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Sep 26, 2017 at 11:16 AM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -37,8 +39,11 @@ CREATE TABLE `candysodas` (
 --
 
 INSERT INTO `candysodas` (`ID`, `Name`, `Price`) VALUES
-(1, 'Pepsi', 345),
-(2, 'Snickers', 2);
+(1, 'Popsi', 15),
+(2, 'Snockers', 10),
+(3, 'T-shirt - Small', 50),
+(4, 'T-shirt - Medium', 50),
+(5, 'T-shirt - Large', 50);
 
 --
 -- Indexes for dumped tables
@@ -58,7 +63,8 @@ ALTER TABLE `candysodas`
 -- AUTO_INCREMENT for table `candysodas`
 --
 ALTER TABLE `candysodas`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
