@@ -14,9 +14,9 @@
       <ChoiceBox fx:id="choiceBox" layoutX="34.0" layoutY="26.0" prefHeight="25.0" prefWidth="174.0" />
       <TableView fx:id="tableView" layoutX="242.0" layoutY="14.0" prefHeight="347.0" prefWidth="344.0">
         <columns>
-            <TableColumn prefWidth="145.0" text="Date"><cellValueFactory><PropertyValueFactory property = ""></PropertyValueFactory></cellValueFactory></TableColumn>
-          <TableColumn minWidth="0.0" prefWidth="98.0" text="Bookings"></TableColumn>
-            <TableColumn prefWidth="100.0" text="Participants"></TableColumn>
+            <TableColumn prefWidth="145.0" text="Date"><cellValueFactory><PropertyValueFactory property = "date"></PropertyValueFactory></cellValueFactory></TableColumn>
+            <TableColumn minWidth="0.0" prefWidth="98.0" text="Bookings"><cellValueFactory><PropertyValueFactory property = ""></PropertyValueFactory></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="100.0" text="Participants"><cellValueFactory><PropertyValueFactory property = "participants"></PropertyValueFactory></cellValueFactory></TableColumn>
         </columns>
       </TableView>
       <Button fx:id="loadBtn" layoutX="34.0" layoutY="295.0" mnemonicParsing="false" onAction="#showStats" prefHeight="53.0" prefWidth="174.0" text="Load" />
