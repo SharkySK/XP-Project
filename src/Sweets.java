@@ -4,9 +4,9 @@
 public class Sweets {
     private int id;
     private String name;
-    private String price;
+    private double price;
 
-    public Sweets(int id, String name, String price){
+    public Sweets(int id, String name, double price){
         this.id = id;
         this.name = name;
         this.price = price;
@@ -18,7 +18,7 @@ public class Sweets {
     public String getName(){
         return name;
     }
-    public String getPrice(){
+    public double getPrice(){
         return price;
     }
 

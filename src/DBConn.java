@@ -309,4 +309,26 @@ public class DBConn {
     }
 
 
+    public ArrayList<Sweets> getSweets() {
+
+        ArrayList<Sweets> sweetList = new ArrayList<>();
+        Connection connection = getConn();
+        String sql = "SELECT * FROM `candysodas`";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                sweetList.add(new Sweets(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getDouble(3)
+                ));
+            }
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return sweetList;
+    }
 }

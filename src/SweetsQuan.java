@@ -4,7 +4,7 @@
 public class SweetsQuan {
 
     private Sweets sweet;
-    private int quantity = 0;
+    private int quantity = 1;
 
     public SweetsQuan(Sweets sweet) {
         this.sweet = sweet;
@@ -14,8 +14,16 @@ public class SweetsQuan {
         return sweet;
     }
 
+    public String getName() {
+        return sweet.getName();
+    }
+
     public int getQuantity() {
         return quantity;
+    }
+
+    public double getPrice() {
+        return sweet.getPrice();
     }
 
     public int addProduct() {
@@ -26,7 +34,7 @@ public class SweetsQuan {
 
     public int subtractProduct() {
 
-        quantity++;
+        quantity--;
         return quantity;
     }
 }
