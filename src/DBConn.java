@@ -2,6 +2,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class DBConn {
 
@@ -308,7 +309,6 @@ public class DBConn {
 
     }
 
-
     public ArrayList<Sweets> getSweets() {
 
         ArrayList<Sweets> sweetList = new ArrayList<>();
@@ -330,5 +330,46 @@ public class DBConn {
             ex.printStackTrace();
         }
         return sweetList;
+    }
+
+    public boolean saveSweetsPurchase(int bookingId, List<SweetsQuan> sweetsQuans) {
+
+        Connection connection = getConn();
+        String sql = "";
+
+        for (SweetsQuan sweetsQuan : sweetsQuans) {
+
+            if (sql.equals("")) {
+
+                sql = "INSERT INTO `sweetsquantity` (`bookingid`, `quantity`, `sweetsid`) VALUES ";
+            } else {
+
+                sql += ", ";
+            }
+            sql += "(?, ?, ?)\n";
+        }
+
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            int index = 0;
+
+            for (SweetsQuan sweetsQuan : sweetsQuans) {
+
+                ps.setInt(index + 1, bookingId);
+                ps.setInt(index + 2, sweetsQuan.getQuantity());
+                ps.setInt(index + 3, sweetsQuan.getSweet().getId());
+                index += 3;
+            }
+
+            ps.execute();
+            connection.close();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
