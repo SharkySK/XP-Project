@@ -3,12 +3,11 @@
  */
 public class SweetsQuan {
 
-    Sweets sweet;
-    int quantity;
+    private Sweets sweet;
+    private int quantity = 0;
 
-    public SweetsQuan(Sweets sweet, int quantity) {
+    public SweetsQuan(Sweets sweet) {
         this.sweet = sweet;
-        this.quantity = quantity;
     }
 
     public Sweets getSweet() {
@@ -16,6 +15,18 @@ public class SweetsQuan {
     }
 
     public int getQuantity() {
+        return quantity;
+    }
+
+    public int addProduct() {
+
+        quantity++;
+        return quantity;
+    }
+
+    public int subtractProduct() {
+
+        quantity++;
         return quantity;
     }
 }
