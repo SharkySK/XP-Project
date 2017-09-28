@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="376.0" prefWidth="600.0" stylesheets="@../xpStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InstructorController">
+<AnchorPane prefHeight="376.0" prefWidth="600.0" stylesheets="@../xpStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InstructorController">
    <children>
-      <TableView fx:id="instructorTable" layoutX="14.0" layoutY="14.0" prefHeight="348.0" prefWidth="168.0">
+      <TableView layoutX="14.0" layoutY="14.0" prefHeight="348.0" prefWidth="168.0">
         <columns>
           <TableColumn prefWidth="167.0" text="Instructors" />
         </columns>
@@ -29,9 +29,9 @@
         </rowConstraints>
          <children>
             <Label text="Modify workdays:" GridPane.rowIndex="1" />
-            <ComboBox fx:id="workdayMenu" prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Workdays:" />
-            <TextField fx:id="workdayField" editable="false" GridPane.columnIndex="1" />
+            <TextField editable="false" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <GridPane layoutX="200.0" layoutY="188.0" prefHeight="74.0" prefWidth="386.0">
