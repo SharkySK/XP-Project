@@ -372,4 +372,36 @@ public class DBConn {
         }
         return false;
     }
+
+    public void addforShop(String name, double price){
+        Connection con = getConn();
+
+        String sql="iNSERT INTO `candysodas` (`ID`,`Name`,`Price`) VALUES (NULL,?,?)";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,name);
+            ps.setDouble(2,price);
+            ps.execute();
+            con.close();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public void updateSweets(String nameC, String name, Double price) {
+        Connection connection = getConn();
+        String sql = "UPDATE `candysodas` SET `Name` = ?, `Price` = ? WHERE `Name` = ?";
+            try {
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setString(1,name);
+                ps.setDouble(2,price);
+                ps.setString(3,nameC);
+                ps.executeUpdate();
+                connection.close();
+            } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+
+    }
 }
