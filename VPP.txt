@@ -1,0 +1,16 @@
+IT-system -> manage reservations of activities, equipment ...
+activities -> need reserved, price, a basic schedule, amount, age limit
+//age limit
+Private individuals -> special services
+Company arrangements 
+reserved trough the phone
+
+
+customer 
+online or offline database
+2 different acounts or one for each employee
+what are the company arrangements
+when private induvid.
+
+
+CUSTOMERS 
