@@ -1,10 +1,14 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+
+import javax.swing.text.TableView;
 
 /**
  * Created by Ersan on 9/25/2017.
  */
 public class SweetsData {
+
 
     private ObservableList<Sweets> sweets = FXCollections.observableArrayList();
 
