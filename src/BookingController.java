@@ -48,6 +48,15 @@ public class BookingController {
     public void initialize() {
         loadInstructors();
 
+        dateField.valueProperty().addListener(new ChangeListener<LocalDate>() {
+            @Override
+            public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
+                int day = dateField.getValue().getDayOfWeek().getValue();
+                ObservableList collection = FXCollections.observableArrayList();
+                collection.setAll(instructorData.getInstructorsByDay(day));
+            }
+        });
+
         instructorBox.setConverter(new StringConverter<Instructor>() {
             @Override
             public String toString(Instructor instructor) {

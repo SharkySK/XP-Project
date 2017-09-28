@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+
 <AnchorPane prefHeight="376.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InstructorController">
    <children>
       <TableView fx:id="instructorTable" layoutX="14.0" layoutY="14.0" prefHeight="348.0" prefWidth="168.0">
         <columns>
-          <TableColumn prefWidth="167.0" text="Instructors"><cellValueFactory><PropertyValueFactory property = "name"></PropertyValueFactory></cellValueFactory></TableColumn>
+          <TableColumn prefWidth="167.0" text="Instructors"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
         </columns>
       </TableView>
       <GridPane layoutX="200.0" layoutY="14.0" prefHeight="107.0" prefWidth="386.0">
