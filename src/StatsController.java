@@ -37,8 +37,13 @@ public class StatsController {
     }
 
     public void loadStatsTable(ArrayList<Booking> b){
-        statsList = FXCollections.observableArrayList(b);
-        tableView.setItems(statsList);
+        try{
+            statsList = FXCollections.observableArrayList(b);
+            tableView.setItems(statsList);
+        } catch (RuntimeException e){
+            System.err.println("You have not choosen the date or period!");
+        }
+
     }
 
     public ArrayList statsDate(){
