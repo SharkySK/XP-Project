@@ -44,6 +44,20 @@ public class DBConn {
         }
     }
 
+    public void updateInstructorWorkdays(int instructorId, int workdays) {
+        Connection connection = getConn();
+        String sql = "UPDATE `instructor` SET `workdays` = ? WHERE `id` = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, workdays);
+            ps.setInt(2, instructorId);
+            ps.execute();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<Instructor> getAllInstructors() {
         Connection connection = getConn();
         String sql = "SELECT * FROM `instructor`";
