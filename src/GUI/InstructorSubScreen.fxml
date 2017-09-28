@@ -4,12 +4,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane prefHeight="376.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InstructorController">
    <children>
-      <TableView layoutX="14.0" layoutY="14.0" prefHeight="348.0" prefWidth="168.0">
+      <TableView fx:id="instructorTable" layoutX="14.0" layoutY="14.0" prefHeight="348.0" prefWidth="168.0">
         <columns>
-          <TableColumn prefWidth="167.0" text="Instructors" />
+          <TableColumn prefWidth="167.0" text="Instructors"><cellValueFactory><PropertyValueFactory property = "name"></PropertyValueFactory></cellValueFactory></TableColumn>
         </columns>
       </TableView>
       <GridPane layoutX="200.0" layoutY="14.0" prefHeight="107.0" prefWidth="386.0">
@@ -23,9 +23,19 @@
         </rowConstraints>
          <children>
             <Label text="Modify workdays:" GridPane.rowIndex="1" />
-            <ComboBox prefHeight="25.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Workdays:" />
-            <TextField editable="false" GridPane.columnIndex="1" />
+            <TextField fx:id="workdayField" editable="false" GridPane.columnIndex="1" />
+            <MenuButton fx:id="workdayMenu" mnemonicParsing="false" prefHeight="25.0" prefWidth="281.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <items>
+                  <CheckMenuItem mnemonicParsing="false" text="Monday" />
+                  <CheckMenuItem mnemonicParsing="false" text="Tuesday" />
+                  <CheckMenuItem mnemonicParsing="false" text="Wednesday" />
+                  <CheckMenuItem mnemonicParsing="false" text="Thursday" />
+                  <CheckMenuItem mnemonicParsing="false" text="Friday" />
+                  <CheckMenuItem mnemonicParsing="false" text="Saturday" />
+                  <CheckMenuItem mnemonicParsing="false" text="Sunday" />
+               </items>
+            </MenuButton>
          </children>
       </GridPane>
       <GridPane layoutX="200.0" layoutY="188.0" prefHeight="74.0" prefWidth="386.0">
