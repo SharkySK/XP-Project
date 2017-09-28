@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2017 at 11:07 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Sep 28, 2017 at 08:58 AM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -78,6 +80,29 @@ INSERT INTO `booking` (`id`, `date`, `starttime`, `endtime`, `name`, `email`, `p
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `candysodas`
+--
+
+CREATE TABLE `candysodas` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Price` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `candysodas`
+--
+
+INSERT INTO `candysodas` (`ID`, `Name`, `Price`) VALUES
+(1, 'Popsi', 15),
+(2, 'Snockers', 10),
+(3, 'T-shirt - Small', 50),
+(4, 'T-shirt - Medium', 50),
+(5, 'T-shirt - Large', 50);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `instructor`
 --
 
@@ -94,6 +119,27 @@ CREATE TABLE `instructor` (
 INSERT INTO `instructor` (`id`, `name`, `workdays`) VALUES
 (7, 'fucktard', 0),
 (8, 'fuuuuuuu', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sweetsquantity`
+--
+
+CREATE TABLE `sweetsquantity` (
+  `bookingid` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `sweetsid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sweetsquantity`
+--
+
+INSERT INTO `sweetsquantity` (`bookingid`, `quantity`, `sweetsid`) VALUES
+(2, 2, 4),
+(2, 2, 2),
+(2, 1, 2);
 
 --
 -- Indexes for dumped tables
@@ -114,10 +160,23 @@ ALTER TABLE `booking`
   ADD KEY `instructorId` (`instructorId`);
 
 --
+-- Indexes for table `candysodas`
+--
+ALTER TABLE `candysodas`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `instructor`
 --
 ALTER TABLE `instructor`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sweetsquantity`
+--
+ALTER TABLE `sweetsquantity`
+  ADD KEY `booking_sweetquan` (`bookingid`),
+  ADD KEY `candysoda_sweetquan` (`sweetsid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -134,6 +193,11 @@ ALTER TABLE `activity`
 ALTER TABLE `booking`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT for table `candysodas`
+--
+ALTER TABLE `candysodas`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `instructor`
 --
 ALTER TABLE `instructor`
@@ -148,6 +212,7 @@ ALTER TABLE `instructor`
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`activity`) REFERENCES `activity` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`instructorId`) REFERENCES `instructor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
