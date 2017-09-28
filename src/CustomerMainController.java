@@ -50,6 +50,6 @@ public class CustomerMainController {
     }
     @FXML
     private void shopOpen(){
-        changeAnchor("GUI/CandySodas.fxml");
+        changeAnchor("GUI/Shop.fxml");
     }
 }
