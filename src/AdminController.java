@@ -57,6 +57,10 @@ public class AdminController {
             ex.printStackTrace();
         }
     }
+    @FXML
+    private void shopOpen(){
+        changeAnchor("GUI/CandySodas    .fxml");
+    }
 
 }
 
