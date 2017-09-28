@@ -21,6 +21,6 @@
       <Label layoutX="370.0" layoutY="77.0" text="Name" />
       <Label layoutX="372.0" layoutY="127.0" text="Price" />
       <Button layoutX="398.0" layoutY="194.0" mnemonicParsing="false" onAction="#addStuff" text="Add" />
-      <Button layoutX="486.0" layoutY="194.0" mnemonicParsing="false" onAction="#updateSelect" text="Update" />
+      <Button layoutX="486.0" layoutY="194.0" mnemonicParsing="false" onAction="#updateSelected" text="Update" />
    </children>
-</>
+</AnchorPane>

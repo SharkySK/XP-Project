@@ -62,11 +62,10 @@ public class CandyController {
         }
     }
     @FXML
-    public void updateSelect(){
+    public void updateSelected(){
         if(sweet.getSelectionModel().getSelectedItems()!=null){
             Sweets selectedSweet = sweet.getSelectionModel().getSelectedItem();
             String sel=selectedSweet.getName().toString();
-            nameShop.setText(sel);
             String name=null;
             double price;
             DBConn dbConn = new DBConn();
