@@ -17,6 +17,10 @@ public class InstructorData {
         instructorList = FXCollections.observableArrayList(dbConn.getAllInstructors());
     }
 
+    public void setList(ArrayList<Instructor> instructors) {
+        instructorList.setAll(instructors);
+    }
+
     public Instructor searchInstructor(int id) {
         for (Instructor i : instructorList) {
             if (i.getId() == id) {
