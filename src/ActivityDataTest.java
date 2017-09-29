@@ -2,14 +2,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Rasmus on 28-09-2017.
- */
 public class ActivityDataTest {
     @Test
     public void getActivityList() throws Exception {
 
-        int expectedAmount = 4;
+        int expectedAmount = 4; //should be same as amount of activities in DB
 
         ActivityData activityData = new ActivityData();
         activityData.loadList();
@@ -19,7 +16,7 @@ public class ActivityDataTest {
     @Test
     public void loadList() throws Exception {
 
-        int expectedAmount = 4;
+        int expectedAmount = 4; //should be same as amount of activities in DB
 
         ActivityData activityData = new ActivityData();
         activityData.loadList();
@@ -29,7 +26,7 @@ public class ActivityDataTest {
     @Test
     public void searchActivity() throws Exception {
 
-        String expectedName = "activityjakub";
+        String expectedName = "activityjakub"; // name of activity with ID 4
 
         ActivityData activityData = new ActivityData();
         activityData.loadList();
