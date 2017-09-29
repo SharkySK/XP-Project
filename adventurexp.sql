@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2017 at 08:58 AM
+-- Generation Time: Sep 29, 2017 at 09:39 AM
 -- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,10 +41,10 @@ CREATE TABLE `activity` (
 --
 
 INSERT INTO `activity` (`id`, `name`, `price`, `age`, `height`) VALUES
-(1, 'activity2', 2, 20, 200),
-(2, 'activity1', 90, 90, 9.9),
-(3, 'lol', 69, 69, 69.9),
-(4, 'activityjakub', 69, 69, 69.69);
+(1, 'Gokart', 2, 20, 200),
+(2, 'Climbing rack', 90, 90, 9.9),
+(3, 'Survival pool', 20, 12, 70),
+(4, 'Mountain biking', 30, 10, 120);
 
 -- --------------------------------------------------------
 
@@ -70,12 +70,12 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`id`, `date`, `starttime`, `endtime`, `name`, `email`, `phonenr`, `participants`, `activity`, `instructorId`) VALUES
-(2, '2017-09-12', '07:00:36', '08:00:36', 'tyr', 'trt', 'tyr', 65, 1, 7),
-(3, '2017-09-12', '07:00:41', '08:00:41', 'tyr', 'trt', 'tyr', 65, 2, 8),
-(4, '2017-09-12', '07:00:43', '08:00:43', 'tyr', 'trt', 'tyr', 65, 3, 8),
-(5, '2017-09-12', '07:00:46', '08:00:46', 'tyr', 'trt', 'tyr', 65, 4, 7),
-(6, '2017-09-12', '07:08:15', '08:08:15', 'yutu80', 'trt', 'tyr', 65, 1, 8),
-(7, '2017-09-12', '07:03:49', '08:03:49', 'yutuytuytuyt', 'trt', 'tyr', 65, 1, 8);
+(2, '2017-09-15', '07:00:36', '08:00:36', 'Thomas ', 'thomas@mail.com', '95115836', 14, 1, 7),
+(3, '2017-09-12', '07:00:41', '08:00:41', 'Sally', 'sally@mail.com', '96572418', 44, 2, 8),
+(4, '2017-09-12', '07:00:43', '08:00:43', 'Jennifer', 'jennifer@mail.com', '10975750', 42, 3, 8),
+(5, '2017-09-12', '07:00:46', '08:00:46', 'Robert', 'robert@mail.com', '82402635', 22, 4, 7),
+(6, '2017-09-12', '07:08:15', '08:08:15', 'Travis', 'travis@mail.com', '32827875', 65, 1, 8),
+(7, '2017-09-12', '07:03:49', '08:03:49', 'Stacey', 'stacey@mail.com', '28352896', 11, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -117,8 +117,9 @@ CREATE TABLE `instructor` (
 --
 
 INSERT INTO `instructor` (`id`, `name`, `workdays`) VALUES
-(7, 'fucktard', 0),
-(8, 'fuuuuuuu', 0);
+(7, 'Linda M. Alex', 0),
+(8, 'Fred J. Garcia', 0),
+(9, 'Paul L. Macias', 0);
 
 -- --------------------------------------------------------
 
@@ -187,21 +188,25 @@ ALTER TABLE `sweetsquantity`
 --
 ALTER TABLE `activity`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `candysodas`
 --
 ALTER TABLE `candysodas`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `instructor`
 --
 ALTER TABLE `instructor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- Constraints for dumped tables
 --
