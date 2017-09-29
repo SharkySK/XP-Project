@@ -8,9 +8,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
 
-/**
- * Created by aezpr on 9/28/2017.
- */
 public class CandyController {
     @FXML
     public TextField nameShop;

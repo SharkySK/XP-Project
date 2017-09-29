@@ -1,6 +1,4 @@
-/**
- * Created by Ersan on 9/25/2017.
- */
+
 public class Sweets {
     private int id;
     private String name;

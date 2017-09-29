@@ -5,9 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Rasmus on 26-09-2017.
- */
 public class DBConnTest {
 
     DBConn dbConn = new DBConn();

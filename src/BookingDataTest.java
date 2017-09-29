@@ -1,5 +1,3 @@
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.junit.Test;
 
 import java.time.LocalDate;

@@ -10,9 +10,6 @@ import sun.plugin.javascript.navig.Anchor;
 
 import java.io.IOException;
 
-/**
- * Created by aezpr on 9/26/2017.
- */
 public class CustomerMainController {
 
     @FXML

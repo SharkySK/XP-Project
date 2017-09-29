@@ -4,9 +4,6 @@ import javafx.fxml.FXML;
 
 import javax.swing.text.TableView;
 
-/**
- * Created by Ersan on 9/25/2017.
- */
 public class SweetsData {
 
 

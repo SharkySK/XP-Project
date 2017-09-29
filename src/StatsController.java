@@ -12,9 +12,6 @@ import java.time.*;
 import java.time.temporal.WeekFields;
 import java.util.*;
 
-/**
- * Created by Jakub Petrík on 25/09/2017.
- */
 public class StatsController {
 
     @FXML

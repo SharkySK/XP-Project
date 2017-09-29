@@ -4,9 +4,6 @@ import javafx.collections.ObservableList;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-/**
- * Created by Rasmus on 20-09-2017.
- */
 public class BookingData {
 
     private ObservableList<Booking> bookingList = FXCollections.observableArrayList();

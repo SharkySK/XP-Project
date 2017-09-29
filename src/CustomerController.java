@@ -19,9 +19,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by Rasmus on 20-09-2017.
- */
 public class CustomerController {
 
     @FXML

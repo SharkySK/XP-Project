@@ -1,8 +1,4 @@
 import java.time.LocalDate;
-
-/**
- * Created by Rasmus on 20-09-2017.
- */
 public class Booking {
 
     private int id;

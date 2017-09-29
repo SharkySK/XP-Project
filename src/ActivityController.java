@@ -6,7 +6,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class ActivityController {
-//don't forget to put them in order for tab // to doooo
     @FXML
     private TableView<Activity> activityTable;
     @FXML

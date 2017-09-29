@@ -1,6 +1,3 @@
-/**
- * Created by Ersan on 9/25/2017.
- */
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

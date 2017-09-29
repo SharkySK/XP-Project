@@ -59,7 +59,7 @@ public class AdminController {
     }
     @FXML
     private void shopOpen(){
-        changeAnchor("GUI/CandySodas    .fxml");
+        changeAnchor("GUI/CandySodas.fxml");
     }
 
 }
