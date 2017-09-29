@@ -20,6 +20,9 @@ public class InstructorData {
     public void setList(ArrayList<Instructor> instructors) {
         instructorList.setAll(instructors);
     }
+    public ObservableList<Instructor> getList() {
+        return instructorList;
+    }
 
     public Instructor searchInstructor(int id) {
         for (Instructor i : instructorList) {

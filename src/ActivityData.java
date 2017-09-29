@@ -9,6 +9,10 @@ public class ActivityData {
         return activityList;
     }
 
+    public ObservableList<Activity> getList() {
+        return activityList;
+    }
+
     public void loadList() {
         DBConn dbConn = new DBConn();
         activityList = FXCollections.observableArrayList(dbConn.getActivities());
