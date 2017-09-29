@@ -1,4 +1,8 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.Test;
+
+import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 
@@ -6,16 +10,10 @@ import static org.junit.Assert.*;
  * Created by Rasmus on 28-09-2017.
  */
 public class BookingDataTest {
-    @Test
-    public void getBookingList() throws Exception {
-
-        BookingData bookingData = new BookingData();
-
-
-    }
 
     @Test
     public void sortByActivity() throws Exception {
+        
 
     }
 
